@@ -4,3 +4,6 @@
 [submodule "frontend/core"]
 	path = frontend/core
 	url = https://github.com/AnSungWook/number-baseball-front.git
+[submodule "mobile/core"]
+	path = mobile/core
+	url = https://github.com/AnSungWook/number-baseball-mobile.git
