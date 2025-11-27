@@ -1,43 +1,29 @@
 # MyGames Monorepo
 
-This repository is structured around independent game experiences so each game can have its own backend, frontend, and mobile surface while still sharing reusable backend core components.
+모든 게임을 한 저장소에서 관리하기 위한 기본 디렉터리 구조입니다.
 
-## Top-level layout
+## 루트 구조
 
 ```
 myGames/
 ├── backend/
-│   ├── core/
+│   ├── core/                 # 공통 백엔드 라이브러리
 │   └── games/
-│       └── number-baseball/
+│       └── number-baseball/  # 숫자 야구 게임 백엔드 코드
 ├── frontend/
-│   ├── core/
-│   └── games/
-│       └── number-baseball/
+│   └── core/                 # 공통 프론트엔드(게임별 컴포넌트 포함)
 └── mobile/
-    └── app/
+    └── app/                  # 모바일 앱 쉘
 ```
 
 ### Backend
-- `backend/core`: shared libraries, domain models, or infrastructure code that can be imported by all games.
-- `backend/games/<game-name>`: service-specific code. Each game can hold its own infrastructure-as-code, API, and CI/CD workflow files.
+- `backend/core`: 여러 게임에서 공유하는 DTO, 유틸, 인증 로직 등을 배치.
+- `backend/games/<game>`: 게임별 API/서비스 코드. 최초로 `number-baseball` 디렉터리를 만들어두었습니다.
 
 ### Frontend
-- `frontend/core`: shared shell/landing experience surfaced to players. Handles navigation, auth, feature discovery, and bootstrapping each game module.
-- `frontend/games/<game-name>`: per-game UI modules that plug into the core shell. Each module can have its own build and release workflow while still being consumed by the shared core app.
+- `frontend/core`: 공통 셸과 라우팅을 담당하는 React 앱. 각 게임은 컴포넌트 형태로 추가합니다.
 
 ### Mobile
-- `mobile/app`: umbrella mobile client consuming multiple games.
+- `mobile/app`: 여러 게임을 묶는 모바일 앱 프로젝트(예: Expo 기반) 위치입니다.
 
-## CI/CD by game
-Run CI/CD per game by triggering workflows located under each game's directory. Example GitHub Actions path:
-```
-backend/games/number-baseball/.github/workflows/backend.yml
-frontend/games/number-baseball/.github/workflows/frontend.yml
-```
-By scoping workflows to each game folder, you can:
-1. Detect changes limited to a game and skip others.
-2. Deploy backend and frontend independently.
-3. Keep shared `backend/core` changes reusable without forcing unrelated deployments.
-
-Add more games by replicating the folder pattern.
+필요한 게임이나 컴포넌트를 추가할 때는 위 패턴에 맞춰 디렉터리를 복제하면 됩니다.
