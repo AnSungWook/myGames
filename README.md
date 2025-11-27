@@ -40,5 +40,8 @@ myGames/
 ### Mobile
 - `mobile/core`: 여러 게임을 묶는 모바일 앱(Flutter) 프로젝트 위치입니다.
 - Flutter 패키지 설치/빌드: `cd mobile/core && flutter pub get && flutter run` (플랫폼 SDK가 필요합니다).
+- 에뮬레이터/시뮬레이터 실행(요약):
+  - Android: Android Studio 설치 → AVD Manager로 가상 디바이스 생성·실행 → `flutter devices`로 인식 확인 → `flutter run -d <emulator-id>` 또는 `flutter emulators --launch <avd-name>` 후 `flutter run`.
+  - iOS: Xcode 설치 → `open -a Simulator`로 시뮬레이터 실행 → `flutter devices`로 인식 확인 → `flutter run -d <simulator-id>`. (실기기 사용 시 프로비저닝/신뢰 설정 필요)
 
 필요한 게임이나 컴포넌트를 추가할 때는 위 패턴에 맞춰 디렉터리를 복제하면 됩니다.
