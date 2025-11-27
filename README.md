@@ -11,7 +11,9 @@ myGames/
 │   └── games/
 │       └── number-baseball/
 ├── frontend/
-│   └── number-baseball/
+│   ├── core/
+│   └── games/
+│       └── number-baseball/
 └── mobile/
     └── app/
 ```
@@ -21,7 +23,8 @@ myGames/
 - `backend/games/<game-name>`: service-specific code. Each game can hold its own infrastructure-as-code, API, and CI/CD workflow files.
 
 ### Frontend
-- `frontend/<game-name>`: client apps per game. Keeps build pipelines focused on the game being released.
+- `frontend/core`: shared shell/landing experience surfaced to players. Handles navigation, auth, feature discovery, and bootstrapping each game module.
+- `frontend/games/<game-name>`: per-game UI modules that plug into the core shell. Each module can have its own build and release workflow while still being consumed by the shared core app.
 
 ### Mobile
 - `mobile/app`: umbrella mobile client consuming multiple games.
@@ -30,7 +33,7 @@ myGames/
 Run CI/CD per game by triggering workflows located under each game's directory. Example GitHub Actions path:
 ```
 backend/games/number-baseball/.github/workflows/backend.yml
-frontend/number-baseball/.github/workflows/frontend.yml
+frontend/games/number-baseball/.github/workflows/frontend.yml
 ```
 By scoping workflows to each game folder, you can:
 1. Detect changes limited to a game and skip others.
