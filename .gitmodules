@@ -1,0 +1,3 @@
+[submodule "backend/games/number-baseball-back"]
+	path = backend/games/number-baseball-back
+	url = https://github.com/AnSungWook/number-baseball-back.git
